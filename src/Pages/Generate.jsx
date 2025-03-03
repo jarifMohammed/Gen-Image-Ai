@@ -12,7 +12,7 @@ const Generate = () => {
 fetch('https://clipdrop-api.co/text-to-image/v1', {
     method: 'POST',
     headers: {
-      'x-api-key':import.meta.procesS.env.VITE_API_KEY,
+      'x-api-key':import.meta.env.VITE_API_KEY,
     },
     body: form,
   })
@@ -20,6 +20,9 @@ fetch('https://clipdrop-api.co/text-to-image/v1', {
   .then(buffer => {
     // buffer here is a binary representation of the returned image
     console.log(buffer);
+    const blob = new Blob([buffer], { type: 'image/png' });
+    const url = URL.createObjectURL(blob);
+    console.log(url);
   })
   };
   return (
